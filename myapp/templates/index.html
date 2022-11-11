@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    {% extends 'base.html' %}
+
+    {% block content %}
+    {% include 'add.html' %}
+    <div style="padding: 20px; background-color: fuchsia"> Extended template index!</div>
+    <a href="{% url 'first' %}">To the first page</a>
+    {% endblock %}
+</div>
+</body>
+</html>

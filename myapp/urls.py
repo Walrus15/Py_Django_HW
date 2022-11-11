@@ -1,10 +1,10 @@
 from django.urls import path, re_path
 from .views import articles, articles_archive, \
     users, articles_num, articles_archive_num, \
-    users_num, regular, number_phone, first
+    users_num, regular, number_phone, index, first
 
 urlpatterns = [
-    path('', first),
+    path('first/', first, name='first'),
     path('articles/', articles),
     path('articles/archive/', articles_archive),
     path('users/', users),
