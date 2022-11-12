@@ -3,6 +3,8 @@ import random
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from datetime import datetime
+from string import ascii_uppercase
+from random import choice
 
 
 class MyClass:
@@ -21,7 +23,6 @@ def index(request):
     my_class = MyClass('class string')
     urls = ['first/', 'articles/', 'articles/archive/', 'users/']
 
-    rand = random.choice(urls)
     return render(request, 'index.html', {
         'my_num': my_num,
         'my_str': my_str,
@@ -32,7 +33,7 @@ def index(request):
         'my_class': my_class,
         'display_num': True,
         'now': datetime.now(),
-        'rand': rand,
+        'urls': urls,
     })
 
 
@@ -54,9 +55,12 @@ def articles_num(request, article_number):
         'article_number': article_number,
     })
 
+
 def articles_archive_num(request, article_number, slug_text):
     article_number = article_number
     slug_text = slug_text
+
+
     return render(request, 'temp1.html', {
         'slug_text': slug_text,
         'article_number': article_number,
@@ -70,4 +74,6 @@ def regular(request):
 
 def number_phone(request):
     return HttpResponse('number good')
+
+
 

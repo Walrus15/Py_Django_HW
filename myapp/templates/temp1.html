@@ -2,22 +2,23 @@
 <html lang="en">
 
 <body>
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% load even_odd %}
 
-    <a href="{% url 'index' %}">To the index page</a>
-<!--    {% if article_number|get_digit:"1" == 0 or article_number|get_digit:"1" == 2 or article_number|get_digit:"1" == 4 or article_number|get_digit:"1" == 6 or article_number|get_digit:"1" == 8 %}-->
-<!--        <span style="padding: 10px; background-color: green">Число четное</span>-->
-<!--    {% else %}-->
-<!--        <span style="padding: 10px; background-color: red">Число не четное</span>-->
-<!--    {% endif %}-->
 
-    {% if article_number|even %}
-        <span style="padding: 10px; background-color: green">Без остатка</span>
-    {% else %}
-        <span style="padding: 10px; background-color: red">С остатком</span>
-    {% endif %}
-
-    {% include 'add.html' %}
+    {% block content %}
+        <a href="{% url 'index' %}">To the index page</a>
+        <br>
+        <br>
+        <br>
+        {% if article_number|even %}
+            <span style="padding: 10px; background-color: green">Без остатка</span>
+        {% else %}
+            <span style="padding: 10px; background-color: red">С остатком</span>
+        {% endif %}
+        <br>
+        <br>
+        {% include 'add.html' %}
+    {% endblock %}
 </body>
 </html>
