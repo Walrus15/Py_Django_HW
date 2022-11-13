@@ -1,0 +1,21 @@
+
+
+{% extends 'index.html' %}
+{% load even_odd %}
+
+
+    {% block content %}
+        <a href="{% url 'index' %}">To the index page</a>
+        <br>
+        <br>
+        <br>
+        {% if article_number|even %}
+            <span style="padding: 10px; background-color: green">Без остатка</span>
+        {% else %}
+            <span style="padding: 10px; background-color: red">С остатком</span>
+        {% endif %}
+        <br>
+        <br>
+        {% include 'add.html' %}
+    {% endblock %}
+

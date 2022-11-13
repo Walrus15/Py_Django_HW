@@ -1,0 +1,31 @@
+
+
+{% extends 'base.html' %}
+{% load even_odd %}
+
+{% block content %}
+    {% include 'add.html' %}
+
+    <div style="padding: 20px; background-color: fuchsia"> Extended template index!</div>
+    <a href="{% url 'first' %}">To the first page</a>
+
+    <br>
+    <br>
+
+    <a href="{{ urls|rand_url }}">Rand page</a>
+
+    <br>
+
+    <a href="articles/{{ p|rand_slug }}">Temp1</a>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
