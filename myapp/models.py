@@ -18,6 +18,14 @@ class AuthorTwo(models.Model):
     def __str__(self):
         return self.name
 
+class BookTwo(models.Model):
+    title = models.CharField(max_length=119)
+    date = models.DateField(blank=True)
+    author = models.ManyToManyField(AuthorTwo, blank=True)
+
+    def __str__(self):
+        return self.title
+
 class UserTwo(models.Model):
     name = models.CharField(max_length=59)
     surname = models.CharField(max_length=59)
@@ -25,15 +33,6 @@ class UserTwo(models.Model):
 
     def __str__(self):
         return self.name
-
-class BookTwo(models.Model):
-    title = models.CharField(max_length=119)
-    date = models.DateField(blank=True)
-    author = models.ManyToManyField(AuthorTwo, blank=True)
-    user = models.ForeignKey(UserTwo, blank=True)
-
-    def __str__(self):
-        return self.title
 
 class Availability(models.Model):
     user = models.ForeignKey(UserTwo, on_delete=models.CASCADE)
@@ -47,22 +46,23 @@ class UserThree(models.Model):
     def __str__(self):
         return self.name
 
+
+class Article(models.Model):
+    user = models.ForeignKey(UserThree, on_delete=models.CASCADE)
+    title = models.CharField(max_length=59)
+    description = models.TextField(max_length=359)
+
+    def __str__(self):
+        return self.title
+
 class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
     user = models.ForeignKey(UserThree, on_delete=models.CASCADE)
     comment = models.TextField(max_length=359)
     com_com = models.ForeignKey('myapp.Comments', on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
         return self.comment
-
-class Article(models.Model):
-    user = models.ForeignKey(UserThree, on_delete=models.CASCADE)
-    title = models.CharField(max_length=59)
-    description = models.TextField(max_length=359)
-    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, blank=True)
-
-    def __str__(self):
-        return self.title
 
 class LikeComment(models.Model):
     user = models.ForeignKey(UserThree, on_delete=models.CASCADE)
