@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    {% for comment in comment_five %}
+        {{ comment.id }}
+        {{ comment.comment }}
+        <br>
+    {% endfor %}
+{% endblock %}

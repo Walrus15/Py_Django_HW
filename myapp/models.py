@@ -58,8 +58,8 @@ class Article(models.Model):
 class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     user = models.ForeignKey(UserThree, on_delete=models.CASCADE)
-    comment = models.TextField(max_length=359)
-    com_com = models.ForeignKey('myapp.Comments', on_delete=models.CASCADE, blank=True)
+    comment = models.TextField(max_length=359, null=True, blank=True)
+    com_com = models.ForeignKey('myapp.Comment', on_delete=models.DO_NOTHING, null=True, blank=True, related_name='comments')
 
     def __str__(self):
         return self.comment

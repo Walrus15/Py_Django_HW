@@ -1,10 +1,13 @@
 import random
+from myapp.models import Comment
 
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from datetime import datetime
 from string import ascii_uppercase
 from random import choice
+
+
 
 
 class MyClass:
@@ -75,5 +78,13 @@ def regular(request):
 def number_phone(request):
     return HttpResponse('number good')
 
+
+def five_last_comment(request):
+    comment = Comment.comment
+    comment_five = Comment.objects.filter().order_by('-pk')[:5]
+    return render(request, 'url1.html', {
+        'comment': comment,
+        'comment_five': comment_five,
+    })
 
 

@@ -1,7 +1,8 @@
 from django.urls import path, re_path
 from .views import articles, articles_archive, \
     users, articles_num, articles_archive_num, \
-    users_num, regular, number_phone, index, first
+    users_num, regular, number_phone, first, index, \
+    five_last_comment
 
 urlpatterns = [
     path('first/', first, name='first'),
@@ -11,6 +12,7 @@ urlpatterns = [
     path('articles/<int:article_number>', articles_num),
     path('articles/<int:article_number>/<slug:slug_text>', articles_archive_num, name='temp1'),
     path('users/<int:article_number>', users_num),
+    path('url1/', five_last_comment, name='url1'),
 
 
     re_path('[1-9a-f]{4}-[1-9a-f]{6}', regular),
