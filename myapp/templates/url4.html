@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    {% for comment4 in comment_start %}
+        {{ comment4.id }}
+        {{ comment4.create_date }}
+        {{ comment4.comment }}
+        <br>
+    {% endfor %}
+    {% for comment4 in comment_mid %}
+        {{ comment4.id }}
+        {{ comment4.create_date }}
+        {{ comment4.comment }}
+        <br>
+    {% endfor %}
+{% for comment4 in comment_finish %}
+        {{ comment4.id }}
+        {{ comment4.create_date }}
+        {{ comment4.comment }}
+        <br>
+    {% endfor %}
+{% endblock %}

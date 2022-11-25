@@ -1,10 +1,13 @@
 import random
+from myapp.models import Comment
 
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from datetime import datetime
 from string import ascii_uppercase
 from random import choice
+
+
 
 
 class MyClass:
@@ -76,4 +79,60 @@ def number_phone(request):
     return HttpResponse('number good')
 
 
+def five_last_comment(request):
+    comment = Comment.comment
+    comment_five1 = Comment.objects.filter().order_by('pk')[:5]
+    return render(request, 'url1.html', {
+        'comment': comment,
+        'comment_five1': comment_five1,
+    })
+
+def different_text(request):
+    comment2 = Comment.comment
+    comment_five2 = Comment.objects.filter().order_by('pk')[5:10]
+    return render(request, 'url2.html', {
+        'comment2': comment2,
+        'comment_five2': comment_five2,
+    })
+
+def date_save(request):
+    comment3 = Comment.comment
+    comment_five3 = Comment.objects.filter().order_by('pk')[10:11]
+    return render(request, 'url3.html', {
+        'comment3': comment3,
+        'comment_five3': comment_five3,
+    })
+
+def update_text(request):
+    comment4 = Comment.comment
+    Comment.objects.filter(comment__icontains='Start').update(comment='Start hi')
+    Comment.objects.filter(comment__icontains='Middle').update(comment='Middle hi')
+    Comment.objects.filter(comment__icontains='Finish').update(comment='Finish hi')
+
+    comment_start = Comment.objects.filter(comment__icontains='Start')
+    comment_mid = Comment.objects.filter(comment__icontains='Middle')
+    comment_finish = Comment.objects.filter(comment__icontains='Finish')
+    return render(request, 'url4.html', {
+        'comment4': comment4,
+        'comment_start': comment_start,
+        'comment_mid': comment_mid,
+        'comment_finish': comment_finish,
+    })
+
+def delete_comments(request):
+    comment5 = Comment.comment
+    Comment.objects.filter(comment__contains='k').exclude(comment__contains='c').delete()
+    comment_delete = Comment.objects.order_by('pk').all()
+    return render(request, 'url5.html', {
+        'comment5': comment5,
+        'comment_delete': comment_delete,
+    })
+
+def comment_alfavit(request):
+    comment6 = Comment.comment
+    comment_alf = Comment.objects.filter(article__date='2022-11-25').order_by('-article__user__name')[:2]
+    return render(request, 'url6.html', {
+        'comment6': comment6,
+        'comment_alf': comment_alf,
+    })
 
