@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    {% for comment5 in comment_delete %}
+        {{ comment5.id }}
+        {{ comment5.create_date }}
+        {{ comment5.comment }}
+        <br>
+    {% endfor %}
+{% endblock %}
+

@@ -1,4 +1,7 @@
 from django.db import models
+from django.utils import timezone
+from datetime import timedelta, date
+
 
 
 # 1. Каталог
@@ -51,6 +54,7 @@ class Article(models.Model):
     user = models.ForeignKey(UserThree, on_delete=models.CASCADE)
     title = models.CharField(max_length=59)
     description = models.TextField(max_length=359)
+    date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.title
@@ -60,9 +64,15 @@ class Comment(models.Model):
     user = models.ForeignKey(UserThree, on_delete=models.CASCADE)
     comment = models.TextField(max_length=359, null=True, blank=True)
     com_com = models.ForeignKey('myapp.Comment', on_delete=models.DO_NOTHING, null=True, blank=True, related_name='comments')
+    create_date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.comment
+
+    def save(self, **kwargs):
+        if not self.id:
+            self.create_date = timezone.now() - timedelta(days=365)
+        super().save(**kwargs)
 
 class LikeComment(models.Model):
     user = models.ForeignKey(UserThree, on_delete=models.CASCADE)

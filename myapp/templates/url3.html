@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    {% for comment3 in comment_five3 %}
+        {{ comment3.id }}
+        {{ comment3.create_date }}
+        {{ comment3.comment }}
+        <br>
+    {% endfor %}
+{% endblock %}
